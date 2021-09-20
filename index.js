@@ -155,7 +155,7 @@ app.post('/cat', cats.buyCat);
 app.post('/debug', (req, res) => {
     if (typeof req.body.data === 'string') {
         db.query('INSERT INTO debug (data, akey, timestamp) VALUES (?, ?, ?)', [
-            req.body.data, req.body.akey, ((parseInt(req.body.timestamp)) ? req.body.timestamp : parseInt(new Date() / 1000))
+            req.body.data, req.body.akey, ((parseInt(req.body.timestamp)) ? req.body.timestamp : Math.floor(Date.now() / 1000))
         ], (err, dbRes) => {
             if (!err && dbRes) {
                 res.json({status: true});
