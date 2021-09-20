@@ -104,7 +104,7 @@ if (srv_config.ROOKOUT_TOKEN) rookout.start({token: srv_config.ROOKOUT_TOKEN});
 
 // last activity track
 app.use((req, res, next) => {
-    if (req.body.akey) db.query('UPDATE accounts SET lastactivity=? WHERE akey=?', [parseInt(new Date() / 1000), req.body.akey], () => next());
+    if (req.body.akey) db.query('UPDATE accounts SET lastactivity=? WHERE akey=?', [Math.floor(Date.now() / 1000), req.body.akey], () => next());
     else next();
 });
 
